@@ -1,12 +1,13 @@
-// import { Contact } from 'components/Contact/Contact';
+import { Contact } from 'components/Contact/Contact';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from 'redux/operations';
-import { selectContacts } from 'redux/selectors';
+import { selectFilteredContacts, selectContacts } from 'redux/selectors';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
-  const { items, isLoading, error } = useSelector(selectContacts);
+  const { isLoading, error } = useSelector(selectContacts);
+  const contacts = useSelector(selectFilteredContacts);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -15,16 +16,13 @@ export const ContactList = () => {
   return (
     <>
       <ul>
-        {
-          items.length > 0 && JSON.stringify(items, null, 2)
-          //  items.map(contact => {
-          //   return (
-          //     <li key={contact.id}>
-          //       <Contact contact={contact}></Contact>
-          //     </li>
-          //   );
-          // })}
-        }
+        {contacts.map(contact => {
+          return (
+            <li key={contact.id}>
+              <Contact contact={contact}></Contact>
+            </li>
+          );
+        })}
       </ul>
       {isLoading && <b>Loading tasks...</b>}
       {error && <b>{error}</b>}
