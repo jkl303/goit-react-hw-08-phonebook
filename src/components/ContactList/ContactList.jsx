@@ -24,7 +24,7 @@ export const ContactList = () => {
           );
         })}
       </ul>
-      {isLoading && <b>Loading tasks...</b>}
+      {isLoading && <b>Loading...</b>}
       {error && <b>{error}</b>}
     </>
   );

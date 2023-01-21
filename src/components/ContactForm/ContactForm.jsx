@@ -18,7 +18,7 @@ export const ContactForm = () => {
     ) {
       alert(`${name.value} is already in contacts.`);
     } else {
-      dispatch(addContact([name.value, number.value]));
+      dispatch(addContact({ name: name.value, phone: number.value }));
       e.target.reset();
     }
   };
@@ -26,7 +26,7 @@ export const ContactForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="name">
-        Name{' '}
+        Name
         <input
           type="text"
           name="name"
@@ -36,7 +36,7 @@ export const ContactForm = () => {
         />
       </label>
       <label htmlFor="number">
-        Number{' '}
+        Number
         <input
           type="tel"
           name="number"
