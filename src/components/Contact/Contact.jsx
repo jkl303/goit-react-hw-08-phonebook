@@ -8,7 +8,7 @@ export const Contact = ({ contact }) => {
   return (
     <>
       <p>{contact.name}</p>
-      <p>{contact.phone}</p>
+      <p>{contact.number}</p>
       <button onClick={() => dispatch(deleteContact(contact.id))}>
         Delete contact
       </button>
@@ -20,6 +20,6 @@ Contact.propTypes = {
   contact: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    phone: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
   }),
 };

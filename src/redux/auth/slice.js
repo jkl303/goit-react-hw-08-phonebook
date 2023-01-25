@@ -8,20 +8,18 @@ const initialState = {
   isRefreshing: false,
 };
 
+const handleLogIn = (state, action) => {
+  state.user = action.payload.user;
+  state.token = action.payload.token;
+  state.isLoggedIn = true;
+};
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
-    [register.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-      state.isLoggedIn = true;
-    },
-    [logIn.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-      state.isLoggedIn = true;
-    },
+    [register.fulfilled]: handleLogIn,
+    [logIn.fulfilled]: handleLogIn,
     [logOut.fulfilled](state) {
       state.user = { name: null, email: null };
       state.token = null;

@@ -18,7 +18,7 @@ export const ContactForm = () => {
     ) {
       alert(`${name.value} is already in contacts.`);
     } else {
-      dispatch(addContact({ name: name.value, phone: number.value }));
+      dispatch(addContact({ name: name.value, number: number.value }));
       e.target.reset();
     }
   };

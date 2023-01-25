@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/operations';
+import { Helmet } from 'react-helmet-async';
 
 export default function Register() {
   const dispatch = useDispatch();
@@ -18,20 +19,25 @@ export default function Register() {
   };
 
   return (
-    <form onSubmit={handleSubmit} autoComplete="off">
-      <label>
-        Username
-        <input type="text" name="name" />
-      </label>
-      <label>
-        Email
-        <input type="email" name="email" />
-      </label>
-      <label>
-        Password
-        <input type="password" name="password" />
-      </label>
-      <button type="submit">Register</button>
-    </form>
+    <>
+      <Helmet>
+        <title>Register</title>
+      </Helmet>
+      <form onSubmit={handleSubmit} autoComplete="off">
+        <label>
+          Username
+          <input type="text" name="name" />
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" />
+        </label>
+        <label>
+          Password
+          <input type="password" name="password" />
+        </label>
+        <button type="submit">Register</button>
+      </form>
+    </>
   );
 }

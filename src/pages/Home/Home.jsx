@@ -1,3 +1,12 @@
+import { Helmet } from 'react-helmet-async';
+
 export default function Home() {
-  return <div>Home</div>;
+  return (
+    <div>
+      <Helmet>
+        <title>Home</title>
+      </Helmet>
+      Home
+    </div>
+  );
 }

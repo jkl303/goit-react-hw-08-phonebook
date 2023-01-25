@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
 
@@ -17,16 +18,21 @@ export default function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit} autoComplete="off">
-      <label>
-        Email
-        <input type="email" name="email" />
-      </label>
-      <label>
-        Password
-        <input type="password" name="password" />
-      </label>
-      <button type="submit">Log In</button>
-    </form>
+    <>
+      <Helmet>
+        <title>Login</title>
+      </Helmet>
+      <form onSubmit={handleSubmit} autoComplete="off">
+        <label>
+          Email
+          <input type="email" name="email" />
+        </label>
+        <label>
+          Password
+          <input type="password" name="password" />
+        </label>
+        <button type="submit">Log In</button>
+      </form>
+    </>
   );
 }
