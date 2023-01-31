@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
+import { LoginFormStyled } from './LoginForm.styled';
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ export default function Login() {
       <Helmet>
         <title>Login</title>
       </Helmet>
-      <form onSubmit={handleSubmit} autoComplete="off">
+      <LoginFormStyled onSubmit={handleSubmit} autoComplete="off">
         <label>
           Email
           <input type="email" name="email" />
@@ -32,7 +33,7 @@ export default function Login() {
           <input type="password" name="password" />
         </label>
         <button type="submit">Log In</button>
-      </form>
+      </LoginFormStyled>
     </>
   );
 }

@@ -4,10 +4,11 @@ import { ContactForm } from '../../components/ContactForm/ContactForm';
 import { ContactList } from '../../components/ContactList/ContactList';
 import { Filter } from '../../components/Filter/Filter';
 import { Helmet } from 'react-helmet-async';
+import { ContactPageStyled } from './ContactsPage.styled';
 
 export default function Contacts() {
   return (
-    <>
+    <ContactPageStyled>
       <Helmet>
         <title>Contacts</title>
       </Helmet>
@@ -19,6 +20,6 @@ export default function Contacts() {
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
-    </>
+    </ContactPageStyled>
   );
 }

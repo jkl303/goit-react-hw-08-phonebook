@@ -6,6 +6,8 @@ import { refreshUser } from 'redux/auth/operations';
 import { useAuth } from 'components/hooks/useAuth';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
+import { GlobalStyle } from './GlobalStyle';
+import { Loader } from './Loader/Loader';
 
 const HomePage = lazy(() => import('pages/Home/Home'));
 const RegisterPage = lazy(() => import('pages/Register/Register'));
@@ -21,34 +23,40 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <b>Refreshing user...</b>
+    <Loader />
   ) : (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<HomePage />} />
-        <Route
-          path="/register"
-          element={
-            <RestrictedRoute
-              redirectTo="/contacts"
-              component={<RegisterPage />}
-            />
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />
-          }
-        />
-        <Route
-          path="/contacts"
-          element={
-            <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
-          }
-        />
-        <Route path="*" element={<HomePage />} />
-      </Route>
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<RegisterPage />}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<LoginPage />}
+              />
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+            }
+          />
+          <Route path="*" element={<HomePage />} />
+        </Route>
+      </Routes>
+      <GlobalStyle />
+    </>
   );
 };

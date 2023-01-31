@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { TitleStyled } from './Title.styled';
 
 export default function Home() {
   return (
@@ -6,7 +7,9 @@ export default function Home() {
       <Helmet>
         <title>Home</title>
       </Helmet>
-      Home
+      <TitleStyled>
+        Please, regist or log in to start working with your contacts!
+      </TitleStyled>
     </div>
   );
 }

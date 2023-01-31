@@ -2,6 +2,8 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { selectFilteredContacts } from 'redux/contacts/selectors';
 import { addContact } from 'redux/contacts/operations';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { ContactFormStyled } from './ContactForm.styled';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
@@ -16,7 +18,7 @@ export const ContactForm = () => {
         contact => contact.name.toLowerCase() === name.value.toLowerCase()
       )
     ) {
-      alert(`${name.value} is already in contacts.`);
+      Notify.info(`${name.value} is already in contacts.`);
     } else {
       dispatch(addContact({ name: name.value, number: number.value }));
       e.target.reset();
@@ -24,7 +26,7 @@ export const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <ContactFormStyled onSubmit={handleSubmit}>
       <label htmlFor="name">
         Name
         <input
@@ -46,6 +48,6 @@ export const ContactForm = () => {
         />
       </label>
       <button type="submit">Add contact</button>
-    </form>
+    </ContactFormStyled>
   );
 };

@@ -1,4 +1,6 @@
 import { Contact } from 'components/Contact/Contact';
+import { Loader } from 'components/Loader/Loader';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from 'redux/contacts/operations';
@@ -16,6 +18,20 @@ export const ContactList = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
+  Notify.init({
+    position: 'center-top',
+    closeButton: false,
+    fontSize: '16px',
+    info: {
+      background: 'darkcyan',
+    },
+    failure: {
+      background: 'purple',
+    },
+  });
+
+  error && Notify.failure(`${error}`);
+
   return (
     <>
       <ul>
@@ -27,8 +43,7 @@ export const ContactList = () => {
           );
         })}
       </ul>
-      {isLoading && <b>Loading...</b>}
-      {error && <b>{error}</b>}
+      {isLoading && <Loader />}
     </>
   );
 };
