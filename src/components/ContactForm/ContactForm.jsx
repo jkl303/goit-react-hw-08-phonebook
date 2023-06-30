@@ -4,6 +4,7 @@ import { selectFilteredContacts } from 'redux/contacts/selectors';
 import { addContact } from 'redux/contacts/operations';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { ContactFormStyled } from './ContactForm.styled';
+import { ButtonStyled } from 'styles/Button.styled';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ export const ContactForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const { name, number } = e.target.elements;
+    const { name, phone } = e.target.elements;
     if (
       contacts.length > 0 &&
       contacts.find(
@@ -20,7 +21,7 @@ export const ContactForm = () => {
     ) {
       Notify.info(`${name.value} is already in contacts.`);
     } else {
-      dispatch(addContact({ name: name.value, number: number.value }));
+      dispatch(addContact({ name: name.value, phone: phone.value }));
       e.target.reset();
     }
   };
@@ -32,22 +33,20 @@ export const ContactForm = () => {
         <input
           type="text"
           name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
         />
       </label>
-      <label htmlFor="number">
+      <label htmlFor="phone">
         Number
         <input
           type="tel"
-          name="number"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          name="phone"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
         />
       </label>
-      <button type="submit">Add contact</button>
+      <ButtonStyled type="submit">Add contact</ButtonStyled>
     </ContactFormStyled>
   );
 };

@@ -1,19 +1,33 @@
-import { Navigation } from 'components/Navigation/Navigation';
-import { UserMenu } from 'components/UserMenu/UserMenu';
+import { useAuth } from 'hooks/useAuth';
 import { AuthNav } from 'components/AuthNav/AuthNav';
-import { useAuth } from 'components/hooks/useAuth';
-import { AppBarStyled } from './AppBar.styled';
+import { HeaderStyled, HomeIcon } from './Header.styled';
+import { Container } from 'components/Container/Container';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logOut } from 'redux/auth/operations';
+import { ButtonStyled } from 'styles/Button.styled';
 
 export const AppBar = () => {
+  const dispatch = useDispatch();
   const { isLoggedIn, user } = useAuth();
 
   return (
-    <AppBarStyled>
-      <Navigation />
-      <div>
-        <p>Welcome, {isLoggedIn ? user.name : 'stranger'}</p>
-        {isLoggedIn ? <UserMenu /> : <AuthNav />}
-      </div>
-    </AppBarStyled>
+    <HeaderStyled>
+      <Container>
+        <Link to="/">
+          <HomeIcon />
+        </Link>
+        <div>
+          <span>Welcome {isLoggedIn && user.name}</span>
+          {isLoggedIn ? (
+            <ButtonStyled type="button" onClick={() => dispatch(logOut())}>
+              Logout
+            </ButtonStyled>
+          ) : (
+            <AuthNav />
+          )}
+        </div>
+      </Container>
+    </HeaderStyled>
   );
 };

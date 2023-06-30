@@ -8,6 +8,7 @@ import {
   selectFilteredContacts,
   selectContacts,
 } from 'redux/contacts/selectors';
+import { ContactListStyled } from './ContactList.styled';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
@@ -34,15 +35,15 @@ export const ContactList = () => {
 
   return (
     <>
-      <ul>
+      <ContactListStyled>
         {contacts.map(contact => {
           return (
-            <li key={contact.id}>
-              <Contact contact={contact}></Contact>
+            <li key={contact._id}>
+              <Contact contact={contact} />
             </li>
           );
         })}
-      </ul>
+      </ContactListStyled>
       {isLoading && <Loader />}
     </>
   );

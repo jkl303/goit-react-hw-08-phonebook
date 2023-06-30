@@ -1,15 +1,20 @@
-import { Helmet } from 'react-helmet-async';
-import { TitleStyled } from './Title.styled';
+import { Container } from 'components/Container/Container';
+import { HomeStyled } from './Home.styled';
+import { useAuth } from 'hooks/useAuth';
+import { Contacts } from 'components/Contacts/Contacts';
 
 export default function Home() {
+  const { isLoggedIn } = useAuth();
+
   return (
-    <div>
-      <Helmet>
-        <title>Home</title>
-      </Helmet>
-      <TitleStyled>
-        Please, regist or log in to start working with your contacts!
-      </TitleStyled>
-    </div>
+    <HomeStyled>
+      <Container>
+        {!isLoggedIn ? (
+          <h1>Please, regist or log in to start working with your contacts!</h1>
+        ) : (
+          <Contacts />
+        )}
+      </Container>
+    </HomeStyled>
   );
 }

@@ -1,17 +1,20 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contacts/operations';
-import { ContactStyled } from './Contact.styled';
+import { ContactStyled, TrashIcon } from './Contact.styled';
 
 export const Contact = ({ contact }) => {
   const dispatch = useDispatch();
+  const { name, phone } = contact;
 
   return (
     <ContactStyled>
-      <p className="contact-name">{contact.name}</p>
-      <p>{contact.number}</p>
-      <button onClick={() => dispatch(deleteContact(contact.id))}>
-        Delete contact
+      <div>
+        <h3>{name}</h3>
+        <a href={`tel:${phone}`}>{phone}</a>
+      </div>
+      <button onClick={() => dispatch(deleteContact(contact._id))}>
+        <TrashIcon />
       </button>
     </ContactStyled>
   );
@@ -19,8 +22,8 @@ export const Contact = ({ contact }) => {
 
 Contact.propTypes = {
   contact: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
   }),
 };

@@ -1,10 +1,14 @@
-import { Helmet } from 'react-helmet-async';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
-import { LoginFormStyled } from './LoginForm.styled';
+import { AuthFormStyled } from '../../styles/AuthForm.styled';
+import { selectError } from 'redux/auth/selectors';
+import { Notify } from 'notiflix';
+import { Container } from 'components/Container/Container';
+import { ButtonStyled } from 'styles/Button.styled';
 
 export default function Login() {
   const dispatch = useDispatch();
+  const error = useSelector(selectError);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -15,25 +19,20 @@ export default function Login() {
         password: form.elements.password.value,
       })
     );
-    form.reset();
+    error && Notify.failure(error);
   };
 
   return (
-    <>
-      <Helmet>
-        <title>Login</title>
-      </Helmet>
-      <LoginFormStyled onSubmit={handleSubmit} autoComplete="off">
-        <label>
-          Email
+    <section>
+      <Container>
+        <AuthFormStyled onSubmit={handleSubmit} autoComplete="off">
+          <label htmlFor="email">Email</label>
           <input type="email" name="email" />
-        </label>
-        <label>
-          Password
-          <input type="password" name="password" />
-        </label>
-        <button type="submit">Log In</button>
-      </LoginFormStyled>
-    </>
+          <label htmlFor="password">Password</label>{' '}
+          <input type="password" name="password" autoComplete="off" />
+          <ButtonStyled type="submit">Log In</ButtonStyled>
+        </AuthFormStyled>
+      </Container>
+    </section>
   );
 }

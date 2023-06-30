@@ -6,6 +6,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
+  error: null,
 };
 
 const handleLogIn = (state, action) => {
@@ -18,8 +19,13 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
-    [register.fulfilled]: handleLogIn,
+    [register.fulfilled](state, action) {
+      state.user = action.payload.user;
+    },
     [logIn.fulfilled]: handleLogIn,
+    [logIn.rejected](state, action) {
+      state.error = action.payload;
+    },
     [logOut.fulfilled](state) {
       state.user = { name: null, email: null };
       state.token = null;
@@ -29,7 +35,7 @@ const authSlice = createSlice({
       state.isRefreshing = true;
     },
     [refreshUser.fulfilled](state, action) {
-      state.user = action.payload;
+      state.user = action.payload.user;
       state.isLoggedIn = true;
       state.isRefreshing = false;
     },
