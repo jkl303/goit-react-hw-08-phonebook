@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkgoit_react_hw_08_phonebook=self.webpackChunkgoit_react_hw_08_phonebook||[]).push([[217],{2217:function(n,e,t){t.r(e),t.d(e,{default:function(){return h}});var o,r=t(6907),i=t(168),c=t(6444).ZP.h1(o||(o=(0,i.Z)(["\n  padding: 10px 20px;\n  color: purple;\n"]))),s=t(3329);function h(){return(0,s.jsxs)("div",{children:[(0,s.jsx)(r.ql,{children:(0,s.jsx)("title",{children:"Home"})}),(0,s.jsx)(c,{children:"Please, regist or log in to start working with your contacts!"})]})}}}]);
-//# sourceMappingURL=217.ea49bb53.chunk.js.map
