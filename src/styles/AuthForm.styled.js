@@ -20,6 +20,7 @@ export const AuthFormStyled = styled.form`
   input {
     width: 100%;
     height: 32px;
+    padding: 0 10px;
     border: 2px solid var(--accent);
     border-radius: 4px;
     outline: none;

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
 import { AuthFormStyled } from '../../styles/AuthForm.styled';
 import { selectError } from 'redux/auth/selectors';
-import { Notify } from 'notiflix';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Container } from 'components/Container/Container';
 import { ButtonStyled } from 'styles/Button.styled';
 
@@ -19,7 +19,7 @@ export default function Login() {
         password: form.elements.password.value,
       })
     );
-    error && Notify.failure(error);
+    error && Notify.failure('Wrong email or password!');
   };
 
   return (

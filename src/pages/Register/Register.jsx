@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/operations';
-import { Notify } from 'notiflix';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useNavigate } from 'react-router-dom';
 import { Container } from 'components/Container/Container';
 import { ButtonStyled } from 'styles/Button.styled';

@@ -19,18 +19,6 @@ export const ContactList = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  Notify.init({
-    position: 'center-top',
-    closeButton: false,
-    fontSize: '16px',
-    info: {
-      background: 'darkcyan',
-    },
-    failure: {
-      background: 'purple',
-    },
-  });
-
   error && Notify.failure(`${error}`);
 
   return (
