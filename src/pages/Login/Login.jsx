@@ -27,8 +27,10 @@ export default function Login() {
       <Container>
         <AuthFormStyled onSubmit={handleSubmit} autoComplete="off">
           <label htmlFor="email">Email</label>
-          <input type="email" name="email" />
-          <label htmlFor="password">Password</label>{' '}
+          <input type="email" name="email" required />
+          <label htmlFor="password" required>
+            Password
+          </label>{' '}
           <input type="password" name="password" autoComplete="off" />
           <ButtonStyled type="submit">Log In</ButtonStyled>
         </AuthFormStyled>
