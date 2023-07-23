@@ -38,6 +38,8 @@ justify-content: space-between;`}
   button {
     background-color: transparent;
     border: none;
+    :hover
+    {cursor: pointer;
   }
 `;
 
@@ -45,4 +47,5 @@ export const TrashIcon = styled(FiTrash2)`
   width: 24px;
   height: 24px;
   color: var(--title);
+  :hover, :focus {color: var(--accent);}
 `;
