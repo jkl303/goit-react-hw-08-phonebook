@@ -47,5 +47,5 @@ export const TrashIcon = styled(FiTrash2)`
   width: 24px;
   height: 24px;
   color: var(--title);
-  :hover, :focus {color: var(--accent);}
+  :hover {color: var(--accent);}
 `;
